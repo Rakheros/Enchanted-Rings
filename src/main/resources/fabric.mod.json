@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "enchanted-rings",
+	"version": "${version}",
+	"name": "Enchanted Rings",
+	"description": "Mod that adds enchanted rings to the game, giving the player one potion effect while wearing it",
+	"authors": [
+		"Rakheros"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/enchanted-rings/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.rakheros.enchantedrings.EnchantedRings"
+		],
+		"fabric-datagen": [
+			"net.rakheros.enchantedrings.EnchantedRingsDataGenerator"
+		],
+		"client": [
+			"net.rakheros.enchantedrings.EnchantedRingsClient"
+		]
+	},
+	"mixins": [
+		"enchanted-rings.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
