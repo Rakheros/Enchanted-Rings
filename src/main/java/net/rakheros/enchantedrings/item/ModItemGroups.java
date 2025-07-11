@@ -8,15 +8,18 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.rakheros.enchantedrings.EnchantedRings;
+import net.rakheros.enchantedrings.block.ModBlocks;
 
 public class ModItemGroups {
     public static final ItemGroup ENCHANTED_RINGS_ITEMS_GROUP = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(EnchantedRings.MOD_ID, "enchanted_rings_items"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.RING_WITH_GEM))
+            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.ENCHANTED_RING))
                     .displayName(Text.translatable("itemgoup.enchanted-rings.enchanted_rings_items"))
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.BASE_RING);
-                        entries.add(ModItems.RING_WITH_GEM);
+                        //entries.add(ModItems.INFUSED_GEM);
+                        entries.add(ModItems.ENCHANTED_RING);
+                        entries.add(ModBlocks.ALCHEMY_TABLE);
                     }).build()
             );
 

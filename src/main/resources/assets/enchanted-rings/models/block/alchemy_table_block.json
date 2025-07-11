@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "enchanted-rings:block/alchemy_table_block"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "enchanted-rings:item/ring_with_gem"
+    "layer0": "enchanted-rings:item/infused_gem"
   }
 }

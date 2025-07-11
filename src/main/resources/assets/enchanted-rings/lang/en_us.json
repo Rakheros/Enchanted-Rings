@@ -1,6 +1,12 @@
 {
   "item.enchanted-rings.base_ring": "Base Ring",
-  "item.enchanted-rings.ring_with_gem": "Ring With Gem",
+  "item.enchanted-rings.enchanted_ring": "Enchanted Ring",
 
-  "itemgoup.enchanted-rings.enchanted_rings_items": "Enchanted Rings Items"
+  "block.enchanted-rings.alchemy_table_block": "Alchemy Table",
+
+  "itemgoup.enchanted-rings.enchanted_rings_items": "Enchanted Rings Items & Blocks",
+
+  "tooltip.enchanted-rings.enchanted_ring.tooltip": "When worn, gain the following potion effect :",
+
+  "effect.enchanted-rings.slimey_effect": "slimey"
 }

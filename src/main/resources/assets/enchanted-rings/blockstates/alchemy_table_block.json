@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "enchanted-rings:block/alchemy_table_block"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "enchanted-rings:item/enchanted_ring_gem",
+    "layer1": "enchanted-rings:item/base_ring"
+  }
+}

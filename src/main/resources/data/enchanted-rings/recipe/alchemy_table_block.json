@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "minecraft:glass_bottle"
+    },
+    "p": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "bb ",
+    "pp ",
+    "pp "
+  ],
+  "result": {
+    "count": 1,
+    "id": "enchanted-rings:alchemy_table_block"
+  }
+}
