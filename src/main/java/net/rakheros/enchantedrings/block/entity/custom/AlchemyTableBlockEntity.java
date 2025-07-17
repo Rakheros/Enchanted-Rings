@@ -33,10 +33,10 @@ import org.jetbrains.annotations.Nullable;
 public class AlchemyTableBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
 
-    private static final int INPUT_BASE_RING_SLOT = 0;
-    private static final int INPUT_DIAMOND_SLOT = 1;
-    private static final int INPUT_POTION_SLOT = 2;
-    private static final int OUTPUT_SLOT = 3;
+    public static final int INPUT_BASE_RING_SLOT = 0;
+    public static final int INPUT_DIAMOND_SLOT = 1;
+    public static final int INPUT_POTION_SLOT = 2;
+    public static final int OUTPUT_SLOT = 3;
 
     public AlchemyTableBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ALCHEMY_TABLE_BE, pos, state);
@@ -77,9 +77,12 @@ public class AlchemyTableBlockEntity extends BlockEntity implements ExtendedScre
 
     public void tick(World world, BlockPos pos, BlockState state) {
         if (hasRecipe()) {
-            createItem();
+            ItemStack item = new ItemStack(ModItems.ENCHANTED_RING, 1);
+            PotionContentsComponent pcc = this.getStack(INPUT_POTION_SLOT).get(DataComponentTypes.POTION_CONTENTS);
+            item.set(DataComponentTypes.POTION_CONTENTS, pcc);
+            this.setStack(OUTPUT_SLOT, item);
         } else {
-            emptyOutputSlot();
+            this.setStack(OUTPUT_SLOT, ItemStack.EMPTY);
         }
     }
 
@@ -99,23 +102,6 @@ public class AlchemyTableBlockEntity extends BlockEntity implements ExtendedScre
         }
 
         return true;
-    }
-
-    private void createItem() {
-        ItemStack item = new ItemStack(ModItems.ENCHANTED_RING, 1);
-        PotionContentsComponent pcc = this.getStack(INPUT_POTION_SLOT).get(DataComponentTypes.POTION_CONTENTS);
-        if (pcc != null) {
-            pcc.forEachEffect(effect -> {
-                effect = new StatusEffectInstance(effect.getEffectType(), StatusEffectInstance.INFINITE);
-            });
-            // now all these effects SHOULD have infinite duration...
-        }
-        item.set(DataComponentTypes.POTION_CONTENTS, pcc);
-        this.setStack(OUTPUT_SLOT, item);
-    }
-
-    private void emptyOutputSlot() {
-        this.setStack(OUTPUT_SLOT, ItemStack.EMPTY);
     }
 
     @Override

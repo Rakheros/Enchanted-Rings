@@ -5,12 +5,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.PotionItem;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.slot.CrafterOutputSlot;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
-import net.rakheros.enchantedrings.EnchantedRings;
 import net.rakheros.enchantedrings.block.entity.custom.AlchemyTableBlockEntity;
+import net.rakheros.enchantedrings.item.ModItems;
 import net.rakheros.enchantedrings.screen.ModScreenHandlers;
 
 public class AlchemyTableScreenHandler extends ScreenHandler {
@@ -26,13 +28,40 @@ public class AlchemyTableScreenHandler extends ScreenHandler {
         this.inventory = (Inventory) blockEntity;
         this.blockEntity = (AlchemyTableBlockEntity) blockEntity;
 
-        this.addSlot(new Slot(inventory, 0, 29, 34));
-        this.addSlot(new Slot(inventory, 1, 54, 34));
-        this.addSlot(new Slot(inventory, 2, 79, 34));
-        this.addSlot(new Slot(inventory, 3, 129, 34) {
+        this.addSlot(new Slot(inventory, AlchemyTableBlockEntity.INPUT_BASE_RING_SLOT, 29, 34) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.BASE_RING);
+            }
+        });
+
+        this.addSlot(new Slot(inventory, AlchemyTableBlockEntity.INPUT_DIAMOND_SLOT, 54, 34) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.DIAMOND);
+            }
+        });
+
+        this.addSlot(new Slot(inventory, AlchemyTableBlockEntity.INPUT_POTION_SLOT, 79, 34) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.getItem() instanceof PotionItem;
+            }
+        });
+
+        this.addSlot(new Slot(inventory, AlchemyTableBlockEntity.OUTPUT_SLOT, 129, 34) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return false;
+            }
+
+            @Override
+            public void onTakeItem(PlayerEntity player, ItemStack stack) {
+                for (int i = 0; i < 3; i++) {
+                    this.inventory.setStack(i,
+                            new ItemStack(this.inventory.getStack(i).getItem(), this.inventory.getStack(i).getCount() - 1));
+                }
+                super.onTakeItem(player, stack);
             }
         });
 
@@ -41,8 +70,27 @@ public class AlchemyTableScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public ItemStack quickMove(PlayerEntity player, int slot) {
-        return null;
+    public ItemStack quickMove(PlayerEntity player, int invSlot) {
+        ItemStack newStack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(invSlot);
+        if (slot != null && slot.hasStack()) {
+            ItemStack originalStack = slot.getStack();
+            newStack = originalStack.copy();
+            if (invSlot < this.inventory.size()) {
+                if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (originalStack.isEmpty()) {
+                return ItemStack.EMPTY;
+            } else {
+                slot.markDirty();
+            }
+        }
+        return newStack;
     }
 
     @Override
@@ -66,7 +114,18 @@ public class AlchemyTableScreenHandler extends ScreenHandler {
 
     @Override
     public void onClosed(PlayerEntity player) {
+        if (!player.isAlive() || player instanceof ServerPlayerEntity && ((ServerPlayerEntity)player).isDisconnected()) {
+            for (int i = 0; i < inventory.size() - 1; i++) {
+                player.dropItem(inventory.removeStack(i), false);
+            }
+        } else {
+            for (int i = 0; i < inventory.size() - 1; i++) {
+                PlayerInventory playerInventory = player.getInventory();
+                if (playerInventory.player instanceof ServerPlayerEntity) {
+                    playerInventory.offerOrDrop(inventory.removeStack(i));
+                }
+            }
+        }
         super.onClosed(player);
-        //this.context.run((world, pos) -> this.dropInventory(player, this.input));
     }
 }

@@ -12,8 +12,6 @@ import net.rakheros.enchantedrings.screen.ModScreenHandlers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Objects;
-
 public class EnchantedRings implements ModInitializer {
 	public static final String MOD_ID = "enchanted-rings";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
@@ -25,9 +23,6 @@ public class EnchantedRings implements ModInitializer {
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerModBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
-
-		//ColorProviderRegistry.ITEM.register((stack, tintIndex) ->
-		//		Objects.requireNonNull(stack.get(DataComponentTypes.POTION_CONTENTS)).getColor(), ModItems.INFUSED_GEM);
 
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex != 0) return -1;
