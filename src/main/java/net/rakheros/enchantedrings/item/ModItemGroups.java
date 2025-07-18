@@ -13,7 +13,7 @@ import net.rakheros.enchantedrings.block.ModBlocks;
 public class ModItemGroups {
     public static final ItemGroup ENCHANTED_RINGS_ITEMS_GROUP = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(EnchantedRings.MOD_ID, "enchanted_rings_items"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.ENCHANTED_RING))
+            FabricItemGroup.builder().icon(() -> new ItemStack(Registries.ITEM.get(Identifier.of(EnchantedRings.MOD_ID, "alchemy_table_block"))))
                     .displayName(Text.translatable("itemgoup.enchanted-rings.enchanted_rings_items"))
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.BASE_RING);
