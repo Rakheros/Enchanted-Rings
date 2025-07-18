@@ -1,5 +1,8 @@
 package net.rakheros.enchantedrings.item.custom;
 
+import java.util.List;
+import java.util.Optional;
+
 import dev.emi.trinkets.api.*;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.PotionContentsComponent;
@@ -11,10 +14,6 @@ import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Pair;
 import net.rakheros.enchantedrings.item.ModItems;
-
-import java.util.List;
-import java.util.Optional;
-
 
 public class EnchantedRingItem extends TrinketItem {
     public EnchantedRingItem(Item.Settings settings) {
