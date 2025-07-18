@@ -28,28 +28,28 @@ public class AlchemyTableScreenHandler extends ScreenHandler {
         this.inventory = (Inventory) blockEntity;
         this.blockEntity = (AlchemyTableBlockEntity) blockEntity;
 
-        this.addSlot(new Slot(inventory, AlchemyTableBlockEntity.INPUT_BASE_RING_SLOT, 29, 34) {
+        this.addSlot(new Slot(inventory, AlchemyTableBlockEntity.INPUT_BASE_RING_SLOT, 35, 39) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isOf(ModItems.BASE_RING);
             }
         });
 
-        this.addSlot(new Slot(inventory, AlchemyTableBlockEntity.INPUT_DIAMOND_SLOT, 54, 34) {
+        this.addSlot(new Slot(inventory, AlchemyTableBlockEntity.INPUT_DIAMOND_SLOT, 53, 39) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isOf(Items.DIAMOND);
             }
         });
 
-        this.addSlot(new Slot(inventory, AlchemyTableBlockEntity.INPUT_POTION_SLOT, 79, 34) {
+        this.addSlot(new Slot(inventory, AlchemyTableBlockEntity.INPUT_POTION_SLOT, 71, 39) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.getItem() instanceof PotionItem;
             }
         });
 
-        this.addSlot(new Slot(inventory, AlchemyTableBlockEntity.OUTPUT_SLOT, 129, 34) {
+        this.addSlot(new Slot(inventory, AlchemyTableBlockEntity.OUTPUT_SLOT, 125, 39) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return false;
