@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "enchanted-rings:enchanted_ring",
-    "minecraft:iron_sword"
+    "enchanted-rings:enchanted_ring"
   ]
 }
