@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "enchanted-rings:block/alchemy_table_block",
+      "y": 90
+    },
+    "facing=north": {
       "model": "enchanted-rings:block/alchemy_table_block"
+    },
+    "facing=south": {
+      "model": "enchanted-rings:block/alchemy_table_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "enchanted-rings:block/alchemy_table_block",
+      "y": 270
     }
   }
 }

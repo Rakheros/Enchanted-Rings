@@ -1,6 +1,9 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/orientable",
   "textures": {
-    "all": "enchanted-rings:block/alchemy_table_block"
+    "front": "enchanted-rings:block/alchemy_table_front",
+    "side": "enchanted-rings:block/alchemy_table_side",
+    "top": "enchanted-rings:block/alchemy_table_top",
+    "bottom": "minecraft:block/oak_planks"
   }
 }
