@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Pair;
 import net.rakheros.enchantedrings.item.ModItems;
 
@@ -25,8 +26,8 @@ public class EnchantedRingItem extends TrinketItem {
         PotionContentsComponent pcc = stack.get(DataComponentTypes.POTION_CONTENTS);
         if (pcc != null) {
             for (StatusEffectInstance statusEffectInstance : pcc.getEffects()) {
-                tooltip.add((Text.translatable("tooltip.enchanted-rings.enchanted_ring.tooltip")));
-                tooltip.add(Text.translatable(statusEffectInstance.getTranslationKey()));
+                tooltip.add((Text.translatable("tooltip.enchanted-rings.enchanted_ring.tooltip")).formatted(Formatting.GRAY));
+                tooltip.add(Text.translatable(statusEffectInstance.getTranslationKey()).formatted(Formatting.GRAY));
             }
         }
         super.appendTooltip(stack, context, tooltip, type);

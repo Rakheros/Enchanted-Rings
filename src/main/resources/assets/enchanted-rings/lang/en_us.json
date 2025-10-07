@@ -4,7 +4,7 @@
 
   "block.enchanted-rings.alchemy_table_block": "Alchemy Table",
 
-  "itemgoup.enchanted-rings.enchanted_rings_items": "Enchanted Rings Items & Blocks",
+  "itemgoup.enchanted-rings.enchanted_rings_items": "Enchanted Rings",
 
-  "tooltip.enchanted-rings.enchanted_ring.tooltip": "When worn, gain the following potion effect :"
+  "tooltip.enchanted-rings.enchanted_ring.tooltip": "When worn:"
 }
