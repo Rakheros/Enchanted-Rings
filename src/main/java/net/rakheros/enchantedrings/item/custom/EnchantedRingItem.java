@@ -42,7 +42,7 @@ public class EnchantedRingItem extends TrinketItem {
                     PotionContentsComponent pcc = pair.getRight().get(DataComponentTypes.POTION_CONTENTS);
                     if (pcc != null) {
                         for (StatusEffectInstance statusEffectInstance : pcc.getEffects()) {
-                            entity.addStatusEffect(new StatusEffectInstance(statusEffectInstance.getEffectType(), 100));
+                            entity.addStatusEffect(new StatusEffectInstance(statusEffectInstance.getEffectType(), 100, statusEffectInstance.getAmplifier(), true, false));
                         }
                     }
                 }
